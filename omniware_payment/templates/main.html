@@ -1,132 +1,185 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Omniware Payments</title>
-  {% load bootstrap5 %}
-  {% bootstrap_css %}
+  <head>
+    <title>Omniware Payments</title>
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
 
-  <style>
-    .small-input {
-      width: 600px; /* Set the desired width */
-    }
-  </style>
+    <style>
+     
+      .text-padding{
+        padding-left: 1%;
+      } 
+      .container{
+        max-width: 800px;
+      }
+      .form-container {
+        border: 1px solid #ccc; /* Add a border */
+        padding: 20px; /* Add some padding inside the container */
+        border-radius: 10px; /* Add rounded corners to the container */
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+        background-color: #e0e0e0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container mt-3">
+      <h2 class="text-center" texta>Payments Form</h2>
+      <div class="form-container mx-auto">
+        <form action="{{ action }}" method="post" id="uatForm">
+          {% csrf_token %}
+          <input type="hidden" name="api_key" value="{{ API_KEY }}" />
+          <input type="hidden" name="hash" value="{{ hash }}" />
 
-</head>
-<body>
-<div class="container mt-3">
-    <h2 class="mb-4">Payments Form</h2>
-    <form action="{{ action }}" method="post" id="uatForm">
-        {% csrf_token %}
-        <input type="hidden" name="api_key" value="{{ API_KEY }}" />
-        <input type="hidden" name="hash" value="{{ hash }}"/>
+          <div class="row mb-3">
+            <label for="amount" class="col-xs-3 col-sm-3 col-md-2 col-lg-2 col-form-label text-padding">Amount</label>
+            <div class="col-xs-9 col-sm-9 col-md-10 col-lg-10 ">
+            <input type="text" class="form-control" id="amount" name="amount" value="{{ posted.amount }}" required />
+            </div>
+          </div>
 
-        <div class="mb-3">
-          <label for="amount" class="form-label">Amount</label>
-          <input type="text" class="form-control small-input" id="amount" name="amount" value="{{ posted.amount }}" required>
-        </div>
+          <div class="row mb-3">
+            <label for="email" class="col-xs-3 col-sm-3 col-md-2 col-lg-2 col-form-label text-padding">Email</label>
+            <div class="col-xs-9 col-sm-9 col-md-10 col-lg-10 ">
+            <input type="text" class="form-control" id="email" name="email" value="{{ posted.email }}" required />
+            </div>
+          </div>
 
-        <div class="mb-3">
-          <label for="email" class="form-label">Email</label>
-          <input type="text" class="form-control small-input" id="email" name="email" value="{{ posted.email }}" required>
-        </div>
+          <div class="row mb-3">
+            <label for="name" class="col-xs-3 col-sm-3 col-md-2 col-lg-2 col-form-label text-padding">Name</label>
+            <div class="col-xs-9 col-sm-9 col-md-10 col-lg-10 ">
+            <input type="text" class="form-control" id="name" name="name" value="{{ posted.name }}" required />
+            </div>
+          </div>
 
-        <div class="mb-3">
-          <label for="name" class="form-label">Name</label>
-          <input type="text" class="form-control small-input" id="name" name="name" value="{{ posted.name }}" required>
-        </div>
+          <div class="row mb-3">
+            <label for="phone" class="col-xs-3 col-sm-3 col-md-2 col-lg-2 col-form-label text-padding">Phone</label>
+            <div class="col-xs-9 col-sm-9 col-md-10 col-lg-10 ">
+            <input type="text" class="form-control" id="phone" name="phone" value="{{ posted.phone }}" required />
+            </div>
+          </div>
 
-        <div class="mb-3">
-          <label for="phone" class="form-label">Phone</label>
-          <input type="text" class="form-control small-input" id="phone" name="phone" value="{{ posted.phone }}" required>
-        </div>
+          <div class="row mb-3">
+            <label for="address_line_1" class="col-xs-3 col-sm-3 col-md-2 col-lg-2 col-form-label text-padding">Address 1</label>
+            <div class="col-xs-9 col-sm-9 col-md-10 col-lg-10 ">
+            <input type="text" class="form-control" id="address_line_1" name="address_line_1" value="{{ posted.address_line_1 }}" required />
+            </div>
+          </div>
 
-        <div class="mb-3">
-          <label for="address_line_1" class="form-label">Address 1</label>
-          <input type="text" class="form-control small-input" id="address_line_1" name="address_line_1" value="{{ posted.address_line_1 }}" required>
-        </div>
+          <div class="row mb-3">
+            <label for="address_line_2" class="col-xs-3 col-sm-3 col-md-2 col-lg-2 col-form-label text-padding">Address 2</label>
+            <div class="col-xs-9 col-sm-9 col-md-10 col-lg-10 ">
+            <input type="text" class="form-control" id="address_line_2" name="address_line_2" value="{{ posted.address_line_2 }}" />
+            </div>
+          </div>
 
-        <div class="mb-3">
-          <label for="address_line_2" class="form-label">Address 2</label>
-          <input type="text" class="form-control small-input" id="address_line_2" name="address_line_2" value="{{ posted.address_line_2 }}">
-        </div>
+          <div class="row mb-3">
+            <label for="order_id" class="col-xs-3 col-sm-3 col-md-2 col-lg-2 col-form-label text-padding">Order Id</label>
+            <div class="col-xs-9 col-sm-9 col-md-10 col-lg-10 ">
+            <input type="text" class="form-control" id="order_id" name="order_id" value="{{ posted.order_id }}" required />
+            </div>
+          </div>
 
-        <div class="mb-3">
-          <label for="order_id" class="form-label">Order Id</label>
-          <input type="text" class="form-control small-input" id="order_id" name="order_id" value="{{ posted.order_id }}" required>
-        </div>
+          <div class="row mb-3">
+            <label for="currency" class="col-xs-3 col-sm-3 col-md-2 col-lg-2 col-form-label text-padding">Currency</label>
+            <div class="col-xs-9 col-sm-9 col-md-10 col-lg-10 ">
+            <input type="text" class="form-control" id="currency" name="currency" value="INR" required />
+            </div>
+          </div>
 
-        <div class="mb-3">
-          <label for="currency" class="form-label">Currency</label>
-          <input type="text" class="form-control small-input" id="currency" name="currency" value="INR" required>
-        </div>
+          <div class="row mb-3">
+            <label for="description" class="col-xs-3 col-sm-3 col-md-2 col-lg-2 col-form-label text-padding">Description</label>
+            <div class="col-xs-9 col-sm-9 col-md-10 col-lg-10 ">
+            <input type="text" class="form-control" id="description" name="description" value="desc" required />
+            </div>
+          </div>
 
-        <div class="mb-3">
-          <label for="description" class="form-label">Description</label>
-          <input type="text" class="form-control small-input" id="description" name="description" value="desc" required>
-        </div>
+          <div class="row mb-3">
+            <label for="city" class="col-xs-3 col-sm-3 col-md-2 col-lg-2 col-form-label text-padding">City</label>
+            <div class="col-xs-9 col-sm-9 col-md-10 col-lg-10 ">
+            <input type="text" class="form-control" id="city" name="city" value="{{ posted.city }}" required />
+            </div>
+          </div>
 
-        <div class="mb-3">
-          <label for="city" class="form-label">City</label>
-          <input type="text" class="form-control small-input" id="city" name="city" value="{{ posted.city }}" required>
-        </div>
+          <div class="row mb-3">
+            <label for="state" class="col-xs-3 col-sm-3 col-md-2 col-lg-2 col-form-label text-padding">State</label>
+            <div class="col-xs-9 col-sm-9 col-md-10 col-lg-10 ">
+            <input type="text" class="form-control" id="state" name="state" value="{{ posted.state }}" />
+            </div>
+          </div>
 
-        <div class="mb-3">
-          <label for="state" class="form-label">State</label>
-          <input type="text" class="form-control small-input" id="state" name="state" value="{{ posted.state }}">
-        </div>
+          <div class="row mb-3">
+            <label for="zip_code" class="col-xs-3 col-sm-3 col-md-2 col-lg-2 col-form-label text-padding">Zip Code</label>
+            <div class="col-xs-9 col-sm-9 col-md-10 col-lg-10 ">
+            <input type="text" class="form-control" id="zip_code" name="zip_code" value="{{ posted.zip_code }}" required />
+            </div>
+          </div>
 
-        <div class="mb-3">
-          <label for="zip_code" class="form-label">Zip Code</label>
-          <input type="text" class="form-control small-input" id="zip_code" name="zip_code" value="{{ posted.zip_code }}" required>
-        </div>
+          <div class="row mb-3">
+            <label for="country" class="col-xs-3 col-sm-3 col-md-2 col-lg-2 col-form-label text-padding">Country</label>
+            <div class="col-xs-9 col-sm-9 col-md-10 col-lg-10 ">
+            <input type="text" class="form-control" id="country" name="country" value="IND" required />
+            </div>
+          </div>
 
-        <div class="mb-3">
-          <label for="country" class="form-label">Country</label>
-          <input type="text" class="form-control small-input" id="country" name="country" value="IND" required>
-        </div>
+          <div class="row mb-3">
+            <label for="return_url" class="col-xs-3 col-sm-3 col-md-2 col-lg-2 col-form-label text-padding">Return URL</label>
+            <div class="col-xs-9 col-sm-9 col-md-10 col-lg-10 ">
+            <input type="text" class="form-control" id="return_url" name="return_url" value="{{ posted.return_url|default:'http://127.0.0.1:8000/payment_response/' }}" required />
+            </div>
+          </div>
 
-        <div class="mb-3">
-          <label for="return_url" class="form-label">Return URL</label>
-          <input type="text" class="form-control small-input" id="return_url" name="return_url" value="{{ posted.return_url|default:'http://127.0.0.1:8000/payment_response/' }}" required>
-        </div>
+          <div class="row mb-3">
+            <label for="mode" class="col-xs-3 col-sm-3 col-md-2 col-lg-2 col-form-label text-padding">Mode</label>
+            <div class="col-xs-9 col-sm-9 col-md-10 col-lg-10 ">
+            <input type="text" class="form-control" id="mode" name="mode" value="{{ posted.mode|default:'TEST' }}" required />
+            </div>
+          </div>
 
-        <div class="mb-3">
-          <label for="mode" class="form-label">Mode</label>
-          <input type="text" class="form-control small-input" id="mode" name="mode" value="{{ posted.mode|default:'TEST' }}" required>
-        </div>
+          <div class="row mb-3">
+            <label for="udf1" class="col-xs-3 col-sm-3 col-md-2 col-lg-2 col-form-label text-padding">UDF 1</label>
+            <div class="col-xs-9 col-sm-9 col-md-10 col-lg-10 ">
+            <input type="text" class="form-control" id="udf1" name="udf1" />
+            </div>
+          </div>
 
-        <div class="mb-3">
-          <label for="udf1" class="form-label">UDF 1</label>
-          <input type="text" class="form-control small-input" id="udf1" name="udf1">
-        </div>
+          <div class="row mb-3">
+            <label for="udf2" class="col-xs-3 col-sm-3 col-md-2 col-lg-2 col-form-label text-padding">UDF 2</label>
+            <div class="col-xs-9 col-sm-9 col-md-10 col-lg-10 ">
+            <input type="text" class="form-control" id="udf2" name="udf2" />
+            </div>
+          </div>
 
-        <div class="mb-3">
-          <label for="udf2" class="form-label">UDF 2</label>
-          <input type="text" class="form-control small-input" id="udf2" name="udf2">
-        </div>
+          <div class="row mb-3">
+            <label for="udf3" class="col-xs-3 col-sm-3 col-md-2 col-lg-2 col-form-label text-padding">UDF 3</label>
+            <div class="col-xs-9 col-sm-9 col-md-10 col-lg-10 ">
+            <input type="text" class="form-control" id="udf3" name="udf3" />
+            </div>
+          </div>
 
-        <div class="mb-3">
-          <label for="udf3" class="form-label">UDF 3</label>
-          <input type="text" class="form-control small-input" id="udf3" name="udf3">
-        </div>
+          <div class="row mb-3">
+            <label for="udf4" class="col-xs-3 col-sm-3 col-md-2 col-lg-2 col-form-label text-padding">UDF 4</label>
+            <div class="col-xs-9 col-sm-9 col-md-10 col-lg-10 ">
+            <input type="text" class="form-control" id="udf4" name="udf4" />
+            </div>
+          </div>
 
-        <div class="mb-3">
-          <label for="udf4" class="form-label">UDF 4</label>
-          <input type="text" class="form-control small-input" id="udf4" name="udf4">
-        </div>
+          <div class="row mb-3">
+            <label for="udf5" class="col-xs-3 col-sm-3 col-md-2 col-lg-2 col-form-label text-padding">UDF 5</label>
+            <div class="col-xs-9 col-sm-9 col-md-10 col-lg-10 ">
+            <input type="text" class="form-control" id="udf5" name="udf5" />
+            </div>
+          </div>
 
-        <div class="mb-3">
-          <label for="udf5" class="form-label">UDF 5</label>
-          <input type="text" class="form-control small-input" id="udf5" name="udf5">
-        </div>
+          <div class="text-center">
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
 
-        <div class="text-right">
-          <button type="submit" class="btn btn-primary">Submit</button>
-        </div>
-      </form>
-  </div>
+    {% block content %}
 
-  {% block content %}
-  {% endblock %}
-</body>
+    {% endblock %}
+  </body>
 </html>
