@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="refresh" content="0;url={{ redirect_url }}" />
+</head>
+<body>
+    <p>If you are not redirected, <a href="{{ redirect_url }}">click here</a>.</p>
+    <form id="redirectForm" action="{{ redirect_url }}" method="post">
+        {% for key, value in payload.items %}
+            <input type="hidden" name="{{ key }}" value="{{ value }}">
+        {% endfor %}
+    </form>
+    <script>
+        document.getElementById("redirectForm").submit();
+    </script>
+</body>
+</html>
