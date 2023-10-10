@@ -1,11 +1,8 @@
 import requests
 import hashlib
-import logging
 from django.shortcuts import render
 from .forms import PaymentRequestForm
-from django.http import HttpResponse
-from django.http import HttpResponseRedirect
-from decimal import Decimal, ROUND_DOWN
+
 
 
 def payment_request_view(request):
@@ -45,7 +42,6 @@ def payment_request_view(request):
             url = "https://uatpgbiz.omniware.in/v2/paymentrequest"
             payload = {**form.cleaned_data, 'hash': hash, 'api_key': API_KEY}
 
-            # return HttpResponseRedirect("https://pgbiz.omniware.in/v2/paymentrequest")
             # Make the POST request
             response = requests.post(url, data=payload)
 
@@ -64,3 +60,4 @@ def payment_request_view(request):
 
     context = {'form': form}
     return render(request, 'payment_request.html', context)
+
