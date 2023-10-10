@@ -2,7 +2,6 @@ from django import forms
 
 class PaymentRequestForm(forms.Form):
     amount = forms.DecimalField()
-    # amount = forms.CharField(max_length=15)
     email = forms.EmailField()
     name = forms.CharField(max_length=100)
     phone = forms.CharField(max_length=15)
@@ -17,7 +16,8 @@ class PaymentRequestForm(forms.Form):
     country = forms.CharField(initial= 'INDIA')
     return_url = forms.URLField(initial= 'http://127.0.0.1:8000/payment_response/')
     mode = forms.ChoiceField(choices=[('LIVE', 'Live'), ('TEST', 'Test')], initial='LIVE')
-    udf1 = forms.CharField(max_length=50, required=False)
-    udf2 = forms.CharField(max_length=50, required=False)
-    udf3 = forms.CharField(max_length=50, required=False)
-    udf4 = forms.CharField(max_length=50, required=False)
+    udf1 = forms.CharField(max_length=100, required=False)
+    udf2 = forms.CharField(max_length=100, required=False)
+    udf3 = forms.CharField(max_length=100, required=False)
+    udf4 = forms.CharField(max_length=100, required=False)
+    udf5 = forms.CharField(max_length=100, required=False)
