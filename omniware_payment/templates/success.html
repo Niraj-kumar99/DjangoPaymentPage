@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Transaction Failed</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+        }
+        .container {
+            text-align: center;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 0 auto;
+            max-width: 400px;
+            margin-top: 50px;
+        }
+        h2 {
+            color: lightgreen;
+        }
+        p {
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Transaction Success</h2>
+        <p>Response Message : {{ response_message }}</p>
+        <p>Transaction Id : {{ txnid }}</p>
+        <p>Status : {{ status }}</p>
+        <p>Amount : {{ amount }}</p>
+        
+        <!-- You can display other details here if needed -->
+    </div>
+</body>
+</html>
