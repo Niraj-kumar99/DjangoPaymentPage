@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Omniware Payments</title>
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+
+    <style>
+      .text-padding {
+        padding-left: 1%;
+      }
+      .container {
+        max-width: 1000px;
+      }
+      .form-container {
+        border: 1px solid #ccc; /* Add a border */
+        padding: 20px; /* Add some padding inside the container */
+        border-radius: 10px; /* Add rounded corners to the container */
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+        background-color: #e0e0e0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container mt-3">
+      <h2 class="text-center" texta>Payment Form</h2>
+      <div class="form-container mx-auto">
+        <form action="{{ action }}" method="post">
+          {% csrf_token %}
+          <input type="hidden" name="api_key" value="{{ API_KEY }}" />
+          {% comment %} <input type="hidden" name="hash" value="{{ hash }}" /> {% endcomment %}
+
+          <div class="row mb-3">
+            <label for="amount" class="col-xs-3 col-sm-3 col-md-2 col-lg-2 col-form-label text-padding">Amount</label>
+            <div class="col-xs-9 col-sm-9 col-md-10 col-lg-10">
+              <input type="text" class="form-control" id="amount" name="amount" value="{{ form.amount.value| default_if_none:'' }}" required />
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <label for="email" class="col-xs-3 col-sm-3 col-md-2 col-lg-2 col-form-label text-padding">Email</label>
+            <div class="col-xs-9 col-sm-9 col-md-10 col-lg-10">
+              <input type="text" class="form-control" id="email" name="email" value="{{ form.email.value| default_if_none:'' }}" required />
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <label for="name" class="col-xs-3 col-sm-3 col-md-2 col-lg-2 col-form-label text-padding">Name</label>
+            <div class="col-xs-9 col-sm-9 col-md-10 col-lg-10">
+              <input type="text" class="form-control" id="name" name="name" value="{{ form.name.value| default_if_none:'' }}" required />
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <label for="phone" class="col-xs-3 col-sm-3 col-md-2 col-lg-2 col-form-label text-padding">Phone</label>
+            <div class="col-xs-9 col-sm-9 col-md-10 col-lg-10">
+              <input type="text" class="form-control" id="phone" name="phone" value="{{ form.phone.value| default_if_none:'' }}" required />
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <label for="address_line_1" class="col-xs-3 col-sm-3 col-md-2 col-lg-2 col-form-label text-padding">Address 1</label>
+            <div class="col-xs-9 col-sm-9 col-md-10 col-lg-10">
+              <input type="text" class="form-control" id="address_line_1" name="address_line_1" value="{{ form.address_line_1.value| default_if_none:'' }}" required />
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <label for="address_line_2" class="col-xs-3 col-sm-3 col-md-2 col-lg-2 col-form-label text-padding">Address 2</label>
+            <div class="col-xs-9 col-sm-9 col-md-10 col-lg-10">
+              <input type="text" class="form-control" id="address_line_2" name="address_line_2" value="{{ form.address_line_2.value| default_if_none:'' }}" />
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <label for="order_id" class="col-xs-3 col-sm-3 col-md-2 col-lg-2 col-form-label text-padding">Order Id</label>
+            <div class="col-xs-9 col-sm-9 col-md-10 col-lg-10">
+              <input type="text" class="form-control" id="order_id" name="order_id" value="{{ form.order_id.value| default_if_none:'' }}" required />
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <label for="currency" class="col-xs-3 col-sm-3 col-md-2 col-lg-2 col-form-label text-padding">Currency</label>
+            <div class="col-xs-9 col-sm-9 col-md-10 col-lg-10">
+              <input type="text" class="form-control" id="currency" name="currency" value="{{ form.currency.value| default_if_none:'' }}" required />
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <label for="description" class="col-xs-3 col-sm-3 col-md-2 col-lg-2 col-form-label text-padding">Description</label>
+            <div class="col-xs-9 col-sm-9 col-md-10 col-lg-10">
+              <input type="text" class="form-control" id="description" name="description" value="{{ form.description.value| default_if_none:'' }}" required />
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <label for="city" class="col-xs-3 col-sm-3 col-md-2 col-lg-2 col-form-label text-padding">City</label>
+            <div class="col-xs-9 col-sm-9 col-md-10 col-lg-10">
+              <input type="text" class="form-control" id="city" name="city" value="{{ form.city.value| default_if_none:'' }}" required />
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <label for="state" class="col-xs-3 col-sm-3 col-md-2 col-lg-2 col-form-label text-padding">State</label>
+            <div class="col-xs-9 col-sm-9 col-md-10 col-lg-10">
+              <input type="text" class="form-control" id="state" name="state" value="{{ form.state.value| default_if_none:'' }}" />
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <label for="zip_code" class="col-xs-3 col-sm-3 col-md-2 col-lg-2 col-form-label text-padding">Zip Code</label>
+            <div class="col-xs-9 col-sm-9 col-md-10 col-lg-10">
+              <input type="text" class="form-control" id="zip_code" name="zip_code" value="{{ form.zip_code.value| default_if_none:'' }}" required />
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <label for="country" class="col-xs-3 col-sm-3 col-md-2 col-lg-2 col-form-label text-padding">Country</label>
+            <div class="col-xs-9 col-sm-9 col-md-10 col-lg-10">
+              <input type="text" class="form-control" id="country" name="country" value="{{ form.country.value| default_if_none:'' }}" required />
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <label for="return_url" class="col-xs-3 col-sm-3 col-md-2 col-lg-2 col-form-label text-padding">Return URL</label>
+            <div class="col-xs-9 col-sm-9 col-md-10 col-lg-10">
+              <input type="text" class="form-control" id="return_url" name="return_url" value="{{ form.return_url.value| default_if_none:'' }}" required />
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <label for="mode" class="col-xs-3 col-sm-3 col-md-2 col-lg-2 col-form-label text-padding">Mode</label>
+            <div class="col-xs-9 col-sm-9 col-md-10 col-lg-10">
+              <input type="text" class="form-control" id="mode" name="mode" value="{{ form.mode.value| default_if_none:'' }}" required />
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <label for="udf1" class="col-xs-3 col-sm-3 col-md-2 col-lg-2 col-form-label text-padding">UDF 1</label>
+            <div class="col-xs-9 col-sm-9 col-md-10 col-lg-10">
+              <input type="text" class="form-control" id="udf1" name="udf1"  value="{{ form.udf1.value| default_if_none:'' }}"/>
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <label for="udf2" class="col-xs-3 col-sm-3 col-md-2 col-lg-2 col-form-label text-padding">UDF 2</label>
+            <div class="col-xs-9 col-sm-9 col-md-10 col-lg-10">
+              <input type="text" class="form-control" id="udf2" name="udf2"  value="{{ form.udf2.value| default_if_none:'' }}"/>
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <label for="udf3" class="col-xs-3 col-sm-3 col-md-2 col-lg-2 col-form-label text-padding">UDF 3</label>
+            <div class="col-xs-9 col-sm-9 col-md-10 col-lg-10">
+              <input type="text" class="form-control" id="udf3" name="udf3"  value="{{ form.udf3.value| default_if_none:'' }}"/>
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <label for="udf4" class="col-xs-3 col-sm-3 col-md-2 col-lg-2 col-form-label text-padding">UDF 4</label>
+            <div class="col-xs-9 col-sm-9 col-md-10 col-lg-10">
+              <input type="text" class="form-control" id="udf4" name="udf4" value="{{ form.udf4.value| default_if_none:'' }}" />
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <label for="udf5" class="col-xs-3 col-sm-3 col-md-2 col-lg-2 col-form-label text-padding">UDF 5</label>
+            <div class="col-xs-9 col-sm-9 col-md-10 col-lg-10">
+              <input type="text" class="form-control" id="udf5" name="udf5" value="{{ form.udf5.value| default_if_none:'' }}" />
+            </div>
+          </div>
+
+          <div class="text-center">
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    {% block content %}
+
+    {% endblock %}
+  </body>
+</html>
