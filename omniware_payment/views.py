@@ -8,8 +8,8 @@ from django.template import RequestContext
 
 
 def payment_request_view(request):
-    API_KEY = "9b62ff8e-f03b-4421-b836-b630edad99dg"
-    SALT = "18e6063d410586se913fa536be8dbf237a6c15ee"
+    API_KEY = "Your_API_KEY"
+    SALT = "YOUR_SALT"
     if request.method == 'POST':
         form = PaymentRequestForm(request.POST)
 
@@ -63,7 +63,6 @@ def payment_response_view(request):
     amount=request.POST.get("amount")
     reponse_hash=request.POST.get("hash")
     SALT = "18e6063d410586se913fa536be8dbf237a6c15ee"
-    # API_KEY = "9b62ff8e-f03b-4421-b836-b630edad99dg"
 
     hash_string=SALT
     for i in sorted(request.POST):
