@@ -1,3 +1,4 @@
+
 Download Python latest Verion from official sie and cofigure it in the system
 
 Install virtual enviorment creation package
@@ -13,15 +14,13 @@ Install django inside virtula enviorment
 " pip install django "
 
 Install bootstrap for the project inside the virtual env
-pip install django-bootstrap-v5
+"pip install django-bootstrap-v5"
 
 
 Install requests library
-pip install requests
+"pip install requests"
 
 
 
 Before runing the project make sure to change the API Keys and Salt of your's
 you can change these values in omniware_payment/views.py
-
-
